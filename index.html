@@ -1,0 +1,1328 @@
+can you add it to the code 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Permit Management - Department of Immigration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003d82;
+            --accent-color: #28a745;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --text-color: #333;
+            --border-radius: 4px;
+            --bermuda-pink: #e83e8c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        .top-bar {
+            background-color: #f8f9fa;
+            padding: 5px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .alert-bermuda-pink {
+            background-color: var(--bermuda-pink);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .alert-bermuda-pink a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .header-logo img {
+            width: 128px;
+            height: auto;
+        }
+        
+        .header-logo span {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .header-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-search {
+            margin-right: 20px;
+        }
+        
+        .header-search input {
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 250px;
+        }
+        
+        .d-utility-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+        }
+        
+        .header-main-menu {
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .block--main {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        
+        .link--level-1 {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            transition: color 0.3s;
+        }
+        
+        .link--level-1:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .pre-content {
+            background-color: #fff;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        #deptHolder {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .field-topic-photo img {
+            width: 100%;
+            max-width: 780px;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        .field-topic-txt {
+            flex: 1;
+        }
+        
+        .field-topic-txt h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .field-topic-txt p {
+            line-height: 1.7;
+        }
+        
+        /* Main Content Layout */
+        .layout-content.with-sidebar {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .with-sidebar-wrapper {
+            display: flex;
+            width: 100%;
+            gap: 30px;
+        }
+        
+        .layout-sidebar-first {
+            width: 30%;
+            min-width: 300px;
+        }
+        
+        .block--system-main-block {
+            width: 70%;
+        }
+        
+        /* Field containers */
+        .field-container {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .field-label {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .field-content ul, .field-content ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .field-content li {
+            margin-bottom: 8px;
+        }
+        
+        .field-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .field-content a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Sidebar blocks */
+        .views-element-container {
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .views-element-container h2, .views-element-container h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .views-row {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        .views-row:last-child {
+            border-bottom: none;
+        }
+        
+        .views-field-title a, .views-field-name a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .views-field-title a:hover, .views-field-name a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        .media--file a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .media--file a:hover {
+            text-decoration: underline;
+        }
+        
+        .more-link {
+            margin-top: 15px;
+        }
+        
+        .more-link a {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .more-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Contact Information */
+        .ministry--info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .department--info {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .address {
+            line-height: 1.5;
+        }
+        
+        /* Dashboard Container */
+        .dashboard-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 30px auto;
+            overflow: hidden;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .nav-tab {
+            cursor: pointer;
+            padding: 15px 30px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: 500;
+            color: #6b7280;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .nav-tab.active {
+            background: white;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .btn {
+            cursor: pointer;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 10px 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: var(--border-radius);
+            color: white;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+        
+        .status-active { background: #16a34a; }
+        .status-expiring { background: #f59e0b; }
+        .status-expired { background: #b91c1c; }
+        
+        .hidden { display: none; }
+        
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: var(--light-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .stat-card.warning {
+            border-left-color: #f59e0b;
+        }
+        
+        .stat-card.success {
+            border-left-color: #16a34a;
+        }
+        
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .stat-card.warning .number {
+            color: #f59e0b;
+        }
+        
+        .stat-card.success .number {
+            color: #16a34a;
+        }
+        
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+            text-align: left;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* Search and Filter */
+        .search-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .search-filter input, .search-filter select {
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: var(--border-radius);
+            flex: 1;
+        }
+        
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal.active { display: flex; }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-content h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 10px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 15px 0;
+            border-radius: var(--border-radius);
+            border: 1px solid #ced4da;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-wrapper-left {
+            display: flex;
+            width: 50%;
+            gap: 20px;
+        }
+        
+        .img-logo-footer img {
+            width: 128px;
+            height: auto;
+        }
+        
+        .footer-description {
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .footer-description a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .footer-wrapper-right {
+            width: 45%;
+        }
+        
+        #footer-menus {
+            margin-bottom: 20px;
+        }
+        
+        .footer-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        .footer-menu a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-menu a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-radio {
+            margin-bottom: 20px;
+        }
+        
+        .disclaimer {
+            background-color: #1a1a1a;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+        
+        .disclaimer p {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .with-sidebar-wrapper {
+                flex-direction: column;
+            }
+            
+            .layout-sidebar-first, .block--system-main-block {
+                width: 100%;
+            }
+            
+            .footer-wrapper-left, .footer-wrapper-right {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .header-logo {
+                justify-content: center;
+            }
+            
+            .header-search {
+                margin-right: 0;
+                width: 100%;
+            }
+            
+            .header-search input {
+                width: 100%;
+            }
+            
+            .block--main {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #deptHolder {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-filter {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .footer-menu ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div id="block-govbm-visitbermuda" class="block--basic">
+                <div class="field-content">
+                    <p><a style="float:right;" href="#" id="hide-tourism" data-once="hideAlertsMessages">[ X ]</a></p>
+                    <div class="alert alert-bermuda-pink alert-dismissible" role="alert">
+                        <p><strong>Discover Bermuda's Stories:</strong> <a href="https://www.gov.bm/whats-citv"><strong>Tune in to CITV</strong></a> <strong>for Government Updates, Cultural Heritage, and Inspiring Programming</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header role="banner">
+        <div class="container">
+            <div id="block-govbm-header" class="block--header-with-utility-megamenu">
+                <div class="header-with-utlity-megamenu relative bg-white xl:h-auto">
+                    <div class="header-top">
+                        <div class="header-logo">
+                            <a href="/" class="link inline-block flex items-center">
+                                <img class="w-32" src="https://www.gov.bm/themes/custom/govbm/images/logo.png" alt="Site logo">
+                            </a>
+                            <span>Government of Bermuda Department of Immigration</span>
+                        </div>
+
+                        <div class="header-search tablet">
+                            <form action="/search" method="GET" class="search-fullscreen" id="block-searchblock">
+                                <div class="relative d-form">
+                                    <input name="keys" class="textfield header__search--input block" id="searchFullscreenInput" type="search" placeholder="What are you looking for?" maxlength="128">
+                                    <button class="button" type="submit">submit</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="header-menu">
+                            <div class="-mr-2 -my-2 flex md:hidden justify-end items-center w-full">
+                                <!-- Mobile menu button would go here -->
+                            </div>
+
+                            <div class="mx-auto hidden md:flex justify-end items-center">
+                                <nav class="flex items-center d-utility-menu">
+                                    <a href="/contact" class="font-lato link--level-1 link inline-block text-sm font-normal text-white xl:text-black" data-drupal-link-system-path="webform/contact">Contact Us</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-main-menu">
+                        <div class="container">
+                            <nav class="block--main hidden md:flex justify-center items-center space-x-10 sm:w-full" aria-labelledby="block-main-menu" id="block-main">
+                                <div class="menu-item">
+                                    <a href="/" class="font-lato link--level-1 link capitalize group inline-flex items-center space-x-2 text-lg leading-6 focus:outline-none hover:no-underline focus:no-underline border-b-2 border-transparent xl:hover:border-secondary xl:focus:border-secondary transition ease-in-out duration-150 text-black">Home</a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="/residents" class="font-lato link--level-1 link capitalize group inline-flex items-center space-x-2 text-lg leading-6 focus:outline-none hover:no-underline focus:no-underline border-b-2 border-transparent xl:hover:border-secondary xl:focus:border-secondary transition ease-in-out duration-150 text-black">Residents</a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="/business" class="font-lato link--level-1 link capitalize group inline-flex items-center space-x-2 text-lg leading-6 focus:outline-none hover:no-underline focus:no-underline border-b-2 border-transparent xl:hover:border-secondary xl:focus:border-secondary transition ease-in-out duration-150 text-black">Business</a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="/government" class="font-lato link--level-1 link capitalize group inline-flex items-center space-x-2 text-lg leading-6 focus:outline-none hover:no-underline focus:no-underline border-b-2 border-transparent xl:hover:border-secondary xl:focus:border-secondary transition ease-in-out duration-150 text-black">Government</a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="/coming-bermuda" class="font-lato link--level-1 link capitalize group inline-flex items-center space-x-2 text-lg leading-6 focus:outline-none hover:no-underline focus:no-underline border-b-2 border-transparent xl:hover:border-secondary xl:focus:border-secondary transition ease-in-out duration-150 text-black">Coming to Bermuda</a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="https://forms.gov.bm/Online-Services" class="font-lato link--level-1 link capitalize group inline-flex items-center space-x-2 text-lg leading-6 focus:outline-none hover:no-underline focus:no-underline border-b-2 border-transparent xl:hover:border-secondary xl:focus:border-secondary transition ease-in-out duration-150 text-black">Online Services</a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="/news" class="font-lato link--level-1 link capitalize group inline-flex items-center space-x-2 text-lg leading-6 focus:outline-none hover:no-underline focus:no-underline border-b-2 border-transparent xl:hover:border-secondary xl:focus:border-secondary transition ease-in-out duration-150 text-black">News</a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pre-Content -->
+    <div class="pre-content">
+        <div class="container">
+            <div class="views-element-container block--views-block" id="block-views-block-department-photo-block">
+                <div>
+                    <div class="views-row">
+                        <div class="views-field views-field-nothing">
+                            <span class="field-content">
+                                <h1 class="title">Work Permit Management System</h1>
+                                <div id="deptHolder">
+                                    <div class="field-topic-photo">
+                                        <img loading="lazy" src="https://www.gov.bm/sites/default/files/immigration.jpg" width="780" height="420" alt="immigration">
+                                    </div>
+                                    <div class="field-topic-txt">
+                                        <h3>About This System</h3>
+                                        <p>The Work Permit Management System allows employers and the Department of Immigration to efficiently manage work permit applications, track status, and ensure compliance with Bermuda's immigration policies. This system streamlines the process from application to approval and renewal.</p>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main role="main" class="flex-grow">
+        <div class="container">
+            <div class="layout-content with-sidebar">
+                <div class="with-sidebar-wrapper">
+                    <!-- Main Content -->
+                    <div class="block--system-main-block">
+                        <div class="field-container label-display-above">
+                            <div class="field-label">What does this system do?</div>
+                            <div class="field-content">
+                                <p>The Work Permit Management System provides a comprehensive platform for managing all aspects of work permit processing in Bermuda. This system allows employers to submit applications, track their status, and receive notifications about expiring permits.</p>
+                                <p>&nbsp;</p>
+                                <p>The system handles:</p>
+                                <ul>
+                                    <li>New work permit applications</li>
+                                    <li>Work permit renewals</li>
+                                    <li>Status tracking for all applications</li>
+                                    <li>Notifications for expiring permits</li>
+                                    <li>Employer and employee information management</li>
+                                    <li>Compliance monitoring and reporting</li>
+                                </ul>
+                                <h5><strong>How to Use This System</strong></h5>
+                                <ol>
+                                    <li>Navigate to the appropriate section using the tabs above</li>
+                                    <li>View your current work permits in the Dashboard</li>
+                                    <li>Add new permits using the "New Permit" button</li>
+                                    <li>Filter and search for specific permits</li>
+                                    <li>Monitor expiring permits in the "Expiring Soon" tab</li>
+                                    <li>Generate reports in the "Reports" tab</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Dashboard Container -->
+                        <div class="dashboard-container">
+                            <div class="nav-tabs">
+                                <button class="nav-tab active" onclick="showTab('dashboard')">Dashboard</button>
+                                <button class="nav-tab" onclick="showTab('permits')">All Permits</button>
+                                <button class="nav-tab" onclick="showTab('expiring')">Expiring Soon</button>
+                                <button class="nav-tab" onclick="showTab('reports')">Reports</button>
+                            </div>
+
+                            <div class="content">
+                                <div id="dashboard-tab">
+                                    <div class="stats-grid">
+                                        <div class="stat-card">
+                                            <h3>Total Active Permits</h3>
+                                            <div class="number" id="total-permits">0</div>
+                                        </div>
+                                        <div class="stat-card warning">
+                                            <h3>Expiring in 30 Days</h3>
+                                            <div class="number" id="expiring-permits">0</div>
+                                        </div>
+                                        <div class="stat-card success">
+                                            <h3>Renewed This Month</h3>
+                                            <div class="number" id="renewed-permits">0</div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                        <h2>Recent Activity</h2>
+                                        <button class="btn btn-primary" onclick="showAddPermitModal()">+ New Permit</button>
+                                    </div>
+                                    
+                                    <div class="search-filter">
+                                        <input type="text" id="search-input" placeholder="Search by employee name, company, or permit number..." onkeyup="filterPermits()">
+                                        <select id="filter-status" onchange="filterPermits()">
+                                            <option value="all">All Status</option>
+                                            <option value="active">Active</option>
+                                            <option value="expiring">Expiring Soon</option>
+                                            <option value="expired">Expired</option>
+                                        </select>
+                                    </div>
+
+                                    <table class="permits-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Permit #</th>
+                                                <th>Employee Name</th>
+                                                <th>Company</th>
+                                                <th>Position</th>
+                                                <th>Expiry Date</th>
+                                                <th>Days Until Expiry</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="permits-tbody">
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="permits-tab" class="hidden">
+                                    <h2>All Work Permits</h2>
+                                    <p>Complete permit listing will appear here.</p>
+                                </div>
+
+                                <div id="expiring-tab" class="hidden">
+                                    <h2>Permits Expiring Soon</h2>
+                                    <p>Urgent renewal list will appear here.</p>
+                                </div>
+
+                                <div id="reports-tab" class="hidden">
+                                    <h2>Reports & Analytics</h2>
+                                    <p>Compliance reports and analytics will appear here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="layout-sidebar-first" role="complementary">
+                        <div class="views-element-container block--views-block" id="block-views-block-department-related-views-taxonomy-block">
+                            <h2>Contact Information</h2>
+                            <div>
+                                <div class="views-row">
+                                    <div class="views-field views-field-view">
+                                        <span class="field-content">
+                                            <div>
+                                                <div class="ministry--info">Ministry of <a href="/ministry/economy-and-labour" hreflang="en">Economy and Labour</a></div>
+                                                <h3><div class="department--info">Department of <a href="/department/immigration" hreflang="en">Immigration</a></div></h3>
+                                                <div class="views-row">
+                                                    <div class="views-field views-field-field-address">
+                                                        <div class="field-content">
+                                                            <p class="address" translate="no">
+                                                                <span class="address-line1">Government Administration Building</span><br>
+                                                                <span class="address-line2">30 Parliament Street</span><br>
+                                                                <span class="locality">Hamilton</span> <span class="postal-code">HM 12</span><br>
+                                                                <span class="country">Bermuda</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="views-row">
+                                                    <div class="views-field views-field-field-filename"><h3 class="field-content">Mailing Address</h3></div>
+                                                    <div class="views-field views-field-field-address">
+                                                        <div class="field-content">
+                                                            <p class="address" translate="no">
+                                                                <span class="address-line1">P.O. Box HM 1364</span><br>
+                                                                <span class="locality">Hamilton</span> <span class="postal-code">HM FX</span><br>
+                                                                <span class="country">Bermuda</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="views-row">
+                                                    <div class="views-field views-field-field-filename"><h3 class="field-content">Main Office</h3></div>
+                                                    <div class="views-field views-field-field-phone">
+                                                        <div class="field-content">(441) 246-8093</div>
+                                                    </div>
+                                                </div>
+                                                <div class="views-row">
+                                                    <div class="views-field views-field-field-filename"><h3 class="field-content">Work Permit Inquiries</h3></div>
+                                                    <div class="views-field views-field-field-phone">
+                                                        <div class="field-content">(441) 295-5151</div>
+                                                    </div>
+                                                </div>
+                                                <div class="views-row">
+                                                    <div class="views-field views-field-field-filename"><h3 class="field-content">Email</h3></div>
+                                                    <div class="views-field views-field-field-email">
+                                                        <div class="field-content">immigration@gov.bm</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="views-element-container block--views-block" id="block-views-block-department-related-views-taxonomy-block-5">
+                            <h2>Online Services</h2>
+                            <div>
+                                <div class="views-row">
+                                    <div class="views-field views-field-view">
+                                        <span class="field-content">
+                                            <div>
+                                                <ul class="menu">
+                                                    <li><div class="views-field views-field-title"><span class="field-content"><a href="/online-services/apply-letter-permission" hreflang="und">Apply for a Letter of Permission</a></span></div></li>
+                                                    <li><div class="views-field views-field-title"><span class="field-content"><a href="/online-services/get-application-residence" hreflang="und">Get an Application for Residence</a></span></div></li>
+                                                    <li><div class="views-field views-field-title"><span class="field-content"><a href="/online-services/get-permanent-residents-certificate" hreflang="und">Get a Permanent Resident's Certificate</a></span></div></li>
+                                                </ul>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="views-element-container block--views-block" id="block-views-block-department-adjustments-block-1">
+                            <h2>Latest Articles</h2>
+                            <div>
+                                <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/articles/public-reminder-re-immigration-penalties-and-importance-compliance" hreflang="en">Public Reminder Re: Immigration Penalties and the Importance of Compliance</a></span></div></div>
+                                <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/articles/department-immigration-clarifies-english-language-proficiency-requirements" hreflang="en">Department of Immigration Clarifies English Language Proficiency Requirements</a></span></div></div>
+                                <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/articles/processing-times-reduced-botc-bermuda-passports" hreflang="en">Processing Times Reduced for BOTC Bermuda Passports</a></span></div></div>
+                                <div class="more-link"><a href="/department-articles/326">View All Articles</a></div>
+                            </div>
+                        </div>
+
+                        <div class="views-element-container block--views-block" id="block-views-block-department-related-views-taxonomy-block-3">
+                            <h2>Resources</h2>
+                            <div>
+                                <div class="views-row">
+                                    <div class="views-field views-field-field-document-resources">
+                                        <div class="field-content">
+                                            <div class="media--file">
+                                                <a class="media-link-only" title="Work Permit Policy" href="/sites/default/files/2025-11/Work_Permit_Policy_.pdf" target="_blank" rel="noopener">Work Permit Policy</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="views-row">
+                                    <div class="views-field views-field-field-document-resources">
+                                        <div class="field-content">
+                                            <div class="media--file">
+                                                <a class="media-link-only" title="Permissions To Reside in Bermuda" href="/sites/default/files/2025-09/Permissions%20To%20Reside%20in%20Bermuda.pdf" target="_blank" rel="noopener">Permissions To Reside in Bermuda</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="views-row">
+                                    <div class="views-field views-field-field-document-resources">
+                                        <div class="field-content">
+                                            <div class="media--file">
+                                                <a class="media-link-only" title="Partner Residence Application Guidelines" href="/sites/default/files/2025-09/Partner%20Residence%20Application%20Guidelines.pdf" target="_blank" rel="noopener">Partner Residence Application Guidelines</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Permit Modal -->
+    <div id="add-permit-modal" class="modal">
+        <div class="modal-content">
+            <h2>Add New Work Permit</h2>
+            <form onsubmit="addPermit(event)">
+                <div class="form-group">
+                    <label>Permit Number</label>
+                    <input type="text" id="permit-number" required placeholder="WP-2025-0001">
+                </div>
+                <div class="form-group">
+                    <label>Employee Name</label>
+                    <input type="text" id="employee-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="company-name" required placeholder="ABC Ltd.">
+                </div>
+                <div class="form-group">
+                    <label>Position</label>
+                    <input type="text" id="position" required placeholder="Software Developer">
+                </div>
+                <div class="form-group">
+                    <label>Issue Date</label>
+                    <input type="date" id="issue-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="date" id="expiry-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Contact Email</label>
+                    <input type="email" id="contact-email" required placeholder="employer@company.bm">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Add Permit</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div id="block-govbm-footer" class="block--footer-simple-settings">
+                <footer class="footer-columns">
+                    <div class="footer-wrapper">
+                        <div class="footer-wrapper-left">
+                            <div class="image img-logo-footer">
+                                <img class="h-full w-full" src="https://www.gov.bm/themes/custom/govbm/images/logo.png" alt="Site logo">
+                            </div>
+                            <div class="footer-description">
+                                <p>For general enquiries, <a href="/contact">contact us</a><br>Follow us:&nbsp;<br>
+                                    <a href="https://www.facebook.com/BermudaGovernment" target="_blank" aria-label="Facebook">
+                                        <img src="https://www.gov.bm/sites/default/files/2024-08/facebook.png" alt="Facebook" width="24" height="24">&nbsp;
+                                    </a>
+                                    <a href="https://www.instagram.com/BermudaGovernment" target="_blank" aria-label="Instagram">
+                                        <img src="https://www.gov.bm/sites/default/files/2024-08/instagram.png" alt="Instagram" width="24" height="24">&nbsp;
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="footer-wrapper-right">
+                            <div id="footer-menus">
+                                <div class="footer-menu pb-2">
+                                    <ul class="flex justify-center md:justify-normal">
+                                        <li class="flex">
+                                            <a class="inline-block text-base transition ease-in-out link flex flex-col" href="/public-access-information-pati">PATI</a>
+                                        </li>
+                                        <li class="flex">
+                                            <a class="inline-block text-base transition ease-in-out link flex flex-col" href="/privacy">Privacy</a>
+                                        </li>
+                                        <li class="flex">
+                                            <a class="inline-block text-base transition ease-in-out link flex flex-col" href="/departments-and-ministries">Departments and Ministries</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="footer-radio text-center md:text-left pb-6 text-black">
+                                <!-- RadioBOSS Cloud Player Widget (Start) -->
+                                <div class="rbcloud_playerlegacy" id="rbcloud_player6319">
+                                    <iframe src="https://c32.radioboss.fm/w/player?u=https%3A%2F%2Fc32.radioboss.fm%3A8801%2Fstream" frameborder="0" width="184" height="82" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                </div>
+                                <script src="https://c32.radioboss.fm/w/player.js?u=https%3A%2F%2Fc32.radioboss.fm%3A8801%2Fstream&amp;wid=6319"></script>
+                                <!-- RadioBOSS Cloud Player Widget (End) -->
+                            </div>
+
+                            <p class="text-base text-center md:text-left text-black">
+                                © 2025 Government of Bermuda
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+
+                <div class="disclaimer">
+                    <p><strong>DISCLAIMER:</strong> Information provided on the Department of Immigration website is intended to allow the public convenient access to Immigration services and information. While all attempts are made to provide accurate, current and reliable information the Department of Immigration and the Government of Bermuda do not guarantee that the information will be error free.</p>
+                    <p>Therefore, the Department of Immigration and the Government of Bermuda and their respective employees, officers and agencies expressly make no warranty of the accuracy, reliability or timeliness of any information published through their websites and shall not be held liable for any losses caused by reliance upon the accuracy, completeness, reliability or timeliness of such information.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data structure
+        let permits = JSON.parse(localStorage.getItem('permits')) || [
+            {
+                id: 1,
+                permitNumber: 'WP-2024-1001',
+                employeeName: 'Sarah Johnson',
+                company: 'Tech Solutions Ltd',
+                position: 'Senior Developer',
+                issueDate: '2024-01-15',
+                expiryDate: '2025-01-15',
+                contactEmail: 'hr@techsolutions.bm',
+                status: 'active'
+            },
+            {
+                id: 2,
+                permitNumber: 'WP-2024-1002',
+                employeeName: 'Michael Chen',
+                company: 'Global Finance Corp',
+                position: 'Accountant',
+                issueDate: '2024-02-01',
+                expiryDate: '2024-12-28',
+                contactEmail: 'hr@globalfinance.bm',
+                status: 'expiring'
+            },
+            {
+                id: 3,
+                permitNumber: 'WP-2024-1003',
+                employeeName: 'Emily Rodriguez',
+                company: 'Healthcare Services',
+                position: 'Nurse',
+                issueDate: '2024-03-10',
+                expiryDate: '2025-03-10',
+                contactEmail: 'admin@healthcare.bm',
+                status: 'active'
+            },
+            {
+                id: 4,
+                permitNumber: 'WP-2024-1004',
+                employeeName: 'David Brown',
+                company: 'Hospitality Group',
+                position: 'Hotel Manager',
+                issueDate: '2024-04-05',
+                expiryDate: '2024-11-30',
+                contactEmail: 'hr@hospitality.bm',
+                status: 'expiring'
+            },
+            {
+                id: 5,
+                permitNumber: 'WP-2024-1005',
+                employeeName: 'Olivia Wilson',
+                company: 'Construction Ltd',
+                position: 'Project Manager',
+                issueDate: '2024-05-20',
+                expiryDate: '2025-05-20',
+                contactEmail: 'admin@construction.bm',
+                status: 'active'
+            },
+            {
+                id: 6,
+                permitNumber: 'WP-2024-1006',
+                employeeName: 'James Miller',
+                company: 'Insurance Partners',
+                position: 'Insurance Agent',
+                issueDate: '2023-12-10',
+                expiryDate: '2024-06-10',
+                contactEmail: 'hr@insurance.bm',
+                status: 'expired'
+            }
+        ];
+
+        function calculateDaysUntilExpiry(expiryDate) {
+            const today = new Date();
+            const expiry = new Date(expiryDate);
+            const diffTime = expiry - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
+        }
+
+        function getPermitStatus(expiryDate) {
+            const days = calculateDaysUntilExpiry(expiryDate);
+            if (days < 0) return 'expired';
+            if (days <= 30) return 'expiring';
+            return 'active';
+        }
+
+        function renderPermits(permitsToRender = permits) {
+            const tbody = document.getElementById('permits-tbody');
+            tbody.innerHTML = '';
+
+            permitsToRender.forEach(permit => {
+                const days = calculateDaysUntilExpiry(permit.expiryDate);
+                const status = getPermitStatus(permit.expiryDate);
+                
+                const statusClass = status === 'active' ? 'status-active' : 
+                                   status === 'expiring' ? 'status-expiring' : 
+                                   'status-expired';
+                
+                const statusText = status === 'active' ? 'Active' : 
+                                  status === 'expiring' ? 'Expiring Soon' : 
+                                  'Expired';
+
+                const row = `
+                    <tr>
+                        <td><strong>${permit.permitNumber}</strong></td>
+                        <td>${permit.employeeName}</td>
+                        <td>${permit.company}</td>
+                        <td>${permit.position}</td>
+                        <td>${new Date(permit.expiryDate).toLocaleDateString()}</td>
+                        <td>${days} days</td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 12px;" onclick="viewPermit(${permit.id})">View</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+
+            updateStats();
+        }
+
+        function updateStats() {
+            const totalActive = permits.filter(p => getPermitStatus(p.expiryDate) === 'active').length;
+            const expiring = permits.filter(p => getPermitStatus(p.expiryDate) === 'expiring').length;
+            const renewed = 3; // Placeholder
+
+            document.getElementById('total-permits').textContent = permits.length;
+            document.getElementById('expiring-permits').textContent = expiring;
+            document.getElementById('renewed-permits').textContent = renewed;
+        }
+
+        function filterPermits() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const statusFilter = document.getElementById('filter-status').value;
+
+            let filtered = permits.filter(permit => {
+                const matchesSearch = 
+                    permit.employeeName.toLowerCase().includes(searchTerm) ||
+                    permit.company.toLowerCase().includes(searchTerm) ||
+                    permit.permitNumber.toLowerCase().includes(searchTerm);
+
+                const matchesStatus = statusFilter === 'all' || 
+                                     getPermitStatus(permit.expiryDate) === statusFilter;
+
+                return matchesSearch && matchesStatus;
+            });
+
+            renderPermits(filtered);
+        }
+
+        function showAddPermitModal() {
+            document.getElementById('add-permit-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('add-permit-modal').classList.remove('active');
+        }
+
+        function addPermit(event) {
+            event.preventDefault();
+
+            const newPermit = {
+                id: permits.length + 1,
+                permitNumber: document.getElementById('permit-number').value,
+                employeeName: document.getElementById('employee-name').value,
+                company: document.getElementById('company-name').value,
+                position: document.getElementById('position').value,
+                issueDate: document.getElementById('issue-date').value,
+                expiryDate: document.getElementById('expiry-date').value,
+                contactEmail: document.getElementById('contact-email').value,
+                status: 'active'
+            };
+
+            permits.push(newPermit);
+            localStorage.setItem('permits', JSON.stringify(permits));
+            
+            renderPermits();
+            closeModal();
+            event.target.reset();
+
+            alert('✅ Work permit added successfully!');
+        }
+
+        function viewPermit(id) {
+            const permit = permits.find(p => p.id === id);
+            alert(`Permit Details:\n\nPermit #: ${permit.permitNumber}\nEmployee: ${permit.employeeName}\nCompany: ${permit.company}\nPosition: ${permit.position}\nExpiry: ${permit.expiryDate}\nContact: ${permit.contactEmail}`);
+        }
+
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('[id$="-tab"]').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.remove('hidden');
+
+            // Update active nav button
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Initialize
+        renderPermits();
+    </script>
+</body>
+</html>
