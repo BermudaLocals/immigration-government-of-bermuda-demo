@@ -1,4 +1,3 @@
-can you add it to the code 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -378,6 +377,7 @@ can you add it to the code
         .status-active { background: #16a34a; }
         .status-expiring { background: #f59e0b; }
         .status-expired { background: #b91c1c; }
+        .status-under-review { background: #3b82f6; }
         
         .hidden { display: none; }
         
@@ -405,6 +405,10 @@ can you add it to the code
             border-left-color: #16a34a;
         }
         
+        .stat-card.info {
+            border-left-color: #3b82f6;
+        }
+        
         .stat-card h3 {
             margin: 0 0 10px 0;
             font-size: 1rem;
@@ -423,6 +427,10 @@ can you add it to the code
         
         .stat-card.success .number {
             color: #16a34a;
+        }
+        
+        .stat-card.info .number {
+            color: #3b82f6;
         }
         
         /* Table Styles */
@@ -832,6 +840,10 @@ can you add it to the code
                                             <h3>Renewed This Month</h3>
                                             <div class="number" id="renewed-permits">0</div>
                                         </div>
+                                        <div class="stat-card info">
+                                            <h3>Under Review</h3>
+                                            <div class="number" id="under-review-permits">0</div>
+                                        </div>
                                     </div>
 
                                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -846,6 +858,7 @@ can you add it to the code
                                             <option value="active">Active</option>
                                             <option value="expiring">Expiring Soon</option>
                                             <option value="expired">Expired</option>
+                                            <option value="under_review">Under Review</option>
                                         </select>
                                     </div>
 
@@ -1117,8 +1130,108 @@ can you add it to the code
     </footer>
 
     <script>
+        // New realistic work permits based on Royal Gazette reports
+        let newPermits = [
+            {
+                id: 100,
+                permitNumber: 'WP-2025-2101',
+                employeeName: 'Liam O\'Connor',
+                company: 'Reinsurance Partners Ltd',
+                position: 'Senior Actuary',
+                issueDate: '2024-11-01',
+                expiryDate: '2026-11-01',
+                contactEmail: 'hr@reinsurancepartners.bm',
+                status: 'active',
+                specialConditions: 'English proficiency via degree'
+            },
+            {
+                id: 101,
+                permitNumber: 'WP-2025-2102',
+                employeeName: 'Mei Chen',
+                company: 'Fairmont Southampton',
+                position: 'Sous Chef',
+                issueDate: '2024-10-15',
+                expiryDate: '2025-12-15',
+                contactEmail: 'hr@fairmontsouthampton.bm',
+                status: 'under_review',
+                specialConditions: 'English test required (Policy after Nov 1)'
+            },
+            {
+                id: 102,
+                permitNumber: 'WP-2025-2103',
+                employeeName: 'David Brown',
+                company: 'Hospitality Group',
+                position: 'Hotel Manager',
+                issueDate: '2023-04-05',
+                expiryDate: '2024-11-30',
+                contactEmail: 'hr@hospitality.bm',
+                status: 'expiring',
+                specialConditions: 'Urgent renewal needed'
+            },
+            {
+                id: 103,
+                permitNumber: 'WP-2025-2104',
+                employeeName: 'Anaya Sharma',
+                company: 'KEMH Hospital',
+                position: 'Registered Nurse',
+                issueDate: '2024-10-01',
+                expiryDate: '2026-10-01',
+                contactEmail: 'admin@kemh.bm',
+                status: 'active',
+                specialConditions: 'Police certificate provided'
+            },
+            {
+                id: 104,
+                permitNumber: 'WP-2025-2105',
+                employeeName: 'Carlos Mendez',
+                company: 'Island Construction',
+                position: 'Project Engineer',
+                issueDate: '2024-11-15',
+                expiryDate: '2026-01-15',
+                contactEmail: 'admin@islandconstruction.bm',
+                status: 'active',
+                specialConditions: 'Short-term permit (Bridge option)'
+            },
+            {
+                id: 105,
+                permitNumber: 'WP-2025-2106',
+                employeeName: 'Chinedu Okon',
+                company: 'Tech Solutions Ltd',
+                position: 'Software Developer',
+                issueDate: '2023-12-10',
+                expiryDate: '2024-06-10',
+                contactEmail: 'hr@techsolutions.bm',
+                status: 'expired',
+                specialConditions: 'On stop list'
+            },
+            {
+                id: 106,
+                permitNumber: 'WP-2025-2107',
+                employeeName: 'Sofia Rossi',
+                company: 'Bermuda International School',
+                position: 'Language Teacher',
+                issueDate: '2024-03-20',
+                expiryDate: '2026-03-20',
+                contactEmail: 'principal@bis.bm',
+                status: 'active',
+                specialConditions: 'Native English speaker (Exception)'
+            },
+            {
+                id: 107,
+                permitNumber: 'WP-2025-2108',
+                employeeName: 'James Miller',
+                company: 'Insurance Partners',
+                position: 'Insurance Agent',
+                issueDate: '2023-12-10',
+                expiryDate: '2024-06-10',
+                contactEmail: 'hr@insurance.bm',
+                status: 'expired',
+                specialConditions: 'Overstay, compliance issue'
+            }
+        ];
+
         // Sample data structure
-        let permits = JSON.parse(localStorage.getItem('permits')) || [
+        let existingPermits = JSON.parse(localStorage.getItem('permits')) || [
             {
                 id: 1,
                 permitNumber: 'WP-2024-1001',
@@ -1187,6 +1300,9 @@ can you add it to the code
             }
         ];
 
+        // Combine new permits with existing ones (new ones first)
+        let permits = [...newPermits, ...existingPermits];
+
         function calculateDaysUntilExpiry(expiryDate) {
             const today = new Date();
             const expiry = new Date(expiryDate);
@@ -1195,8 +1311,14 @@ can you add it to the code
             return diffDays;
         }
 
-        function getPermitStatus(expiryDate) {
-            const days = calculateDaysUntilExpiry(expiryDate);
+        function getPermitStatus(permit) {
+            // If permit already has a status, use it
+            if (permit.status) {
+                return permit.status;
+            }
+            
+            // Otherwise calculate based on expiry date
+            const days = calculateDaysUntilExpiry(permit.expiryDate);
             if (days < 0) return 'expired';
             if (days <= 30) return 'expiring';
             return 'active';
@@ -1208,15 +1330,17 @@ can you add it to the code
 
             permitsToRender.forEach(permit => {
                 const days = calculateDaysUntilExpiry(permit.expiryDate);
-                const status = getPermitStatus(permit.expiryDate);
+                const status = getPermitStatus(permit);
                 
                 const statusClass = status === 'active' ? 'status-active' : 
                                    status === 'expiring' ? 'status-expiring' : 
-                                   'status-expired';
+                                   status === 'expired' ? 'status-expired' :
+                                   'status-under-review';
                 
                 const statusText = status === 'active' ? 'Active' : 
                                   status === 'expiring' ? 'Expiring Soon' : 
-                                  'Expired';
+                                  status === 'expired' ? 'Expired' :
+                                  'Under Review';
 
                 const row = `
                     <tr>
@@ -1239,13 +1363,15 @@ can you add it to the code
         }
 
         function updateStats() {
-            const totalActive = permits.filter(p => getPermitStatus(p.expiryDate) === 'active').length;
-            const expiring = permits.filter(p => getPermitStatus(p.expiryDate) === 'expiring').length;
+            const totalActive = permits.filter(p => getPermitStatus(p) === 'active').length;
+            const expiring = permits.filter(p => getPermitStatus(p) === 'expiring').length;
             const renewed = 3; // Placeholder
+            const underReview = permits.filter(p => getPermitStatus(p) === 'under_review').length;
 
             document.getElementById('total-permits').textContent = permits.length;
             document.getElementById('expiring-permits').textContent = expiring;
             document.getElementById('renewed-permits').textContent = renewed;
+            document.getElementById('under-review-permits').textContent = underReview;
         }
 
         function filterPermits() {
@@ -1259,7 +1385,7 @@ can you add it to the code
                     permit.permitNumber.toLowerCase().includes(searchTerm);
 
                 const matchesStatus = statusFilter === 'all' || 
-                                     getPermitStatus(permit.expiryDate) === statusFilter;
+                                     getPermitStatus(permit) === statusFilter;
 
                 return matchesSearch && matchesStatus;
             });
@@ -1302,7 +1428,13 @@ can you add it to the code
 
         function viewPermit(id) {
             const permit = permits.find(p => p.id === id);
-            alert(`Permit Details:\n\nPermit #: ${permit.permitNumber}\nEmployee: ${permit.employeeName}\nCompany: ${permit.company}\nPosition: ${permit.position}\nExpiry: ${permit.expiryDate}\nContact: ${permit.contactEmail}`);
+            let details = `Permit Details:\n\nPermit #: ${permit.permitNumber}\nEmployee: ${permit.employeeName}\nCompany: ${permit.company}\nPosition: ${permit.position}\nExpiry: ${permit.expiryDate}\nContact: ${permit.contactEmail}`;
+            
+            if (permit.specialConditions) {
+                details += `\n\nSpecial Conditions: ${permit.specialConditions}`;
+            }
+            
+            alert(details);
         }
 
         function showTab(tabName) {
